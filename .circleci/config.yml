@@ -26,6 +26,27 @@ jobs:
       - run:
           name: Rodar testes do JEST
           command: npm run coveralls
+  deploy:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node_cached
+      - run:
+          name: Instalação do netlify-cli
+          command: sudo npm install -g --silent netlify-cli
+      - save_cache:
+          key: node_cached
+          paths:
+            - node_modules    
+      - run:
+          name: Build da aplicação
+          command: npm run build
+      - run:
+          name: Deploy para o Netlify
+          command: netlify deploy --dir=./dist -p
 workflows:
   install-deploy:
       jobs:
@@ -33,4 +54,8 @@ workflows:
         - jest:
             requires:
               - pacotes
+        - deploy:
+            requires:
+              - pacotes
+              - jest
 
