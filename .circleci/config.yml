@@ -61,11 +61,11 @@ workflows:
               - pacotes
               - jest
         - cypress/run:
-          name: cypress-run
-          install-command: yarn install --frozen-lockfile
-          working_directory: .
-          requires:
-            - pacotes
-            - jest
-            - deploy
+            name: cypress-run
+            install-command: yarn install --frozen-lockfile
+            working_directory: .
+            requires:
+              - pacotes
+              - jest
+              - deploy
 
