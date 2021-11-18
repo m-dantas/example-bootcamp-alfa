@@ -1,0 +1,21 @@
+version: 2.1
+jobs:
+  pacotes: # nome do `trabalho`
+    docker: # imagem do docker
+      - image: circleci/node:lts
+    steps: # passo a passo do `trabalho`
+      - checkout # step especial usado para defenir o diretorio que vamos trabalhar (default: .)
+      - restore_cache: # verificar se há algum cache salvo com as keys passadas
+          keys:
+            - node_cached # nome do arquivo `cache`
+      - run:
+          name: Instalação dos pacotes
+          command: npm install
+      - save_cache: # usado para salvar em cache algo
+          key: node_cached # nome do arquivo cache
+          paths: # arquivo a ser salvo no cache
+            - node_modules
+workflows:
+  - install-deploy:
+      jobs:
+        - pacotes
