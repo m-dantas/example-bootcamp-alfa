@@ -27,7 +27,7 @@ jobs:
           name: Rodar testes do JEST
           command: npm run coveralls
 workflows:
-  - install-deploy:
+  install-deploy:
       jobs:
         - pacotes
         - jest:
