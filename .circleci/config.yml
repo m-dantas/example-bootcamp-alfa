@@ -16,6 +16,6 @@ jobs:
           paths: # arquivo a ser salvo no cache
             - node_modules
 workflows:
-  - install-deploy:
+  install-deploy:
       jobs:
         - pacotes
