@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  cypress: cypress-io/cypress@1.29.0
 jobs:
   pacotes: # nome do `trabalho`
     docker: # imagem do docker
@@ -58,4 +60,12 @@ workflows:
             requires:
               - pacotes
               - jest
+        - cypress/run:
+          name: cypress-run
+          install-command: yarn install --frozen-lockfile
+          working_directory: .
+          requires:
+            - pacotes
+            - jest
+            - deploy
 
