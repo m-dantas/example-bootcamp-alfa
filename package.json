@@ -7,10 +7,12 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "coveralls": "^3.1.1",
     "dotenv": "^10.0.0",
     "vue": "^2.6.11"
   },

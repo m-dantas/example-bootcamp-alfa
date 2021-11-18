@@ -15,7 +15,22 @@ jobs:
           key: node_cached # nome do arquivo cache
           paths: # arquivo a ser salvo no cache
             - node_modules
+  jest:
+    docker:
+       - image: circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node_cached
+      - run:
+          name: Rodar testes do JEST
+          command: npm run coveralls
 workflows:
   - install-deploy:
       jobs:
         - pacotes
+        - jest:
+            requires:
+              - pacotes
+
