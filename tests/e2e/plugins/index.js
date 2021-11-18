@@ -8,12 +8,14 @@
 
 // /* eslint-disable import/no-extraneous-dependencies, global-require */
 // const webpack = require('@cypress/webpack-preprocessor')
+require('dotenv').config()
 
 module.exports = (on, config) => {
   // on('file:preprocessor', webpack({
   //  webpackOptions: require('@vue/cli-service/webpack.config'),
   //  watchOptions: {}
   // }))
+  config.env.URL_DEFAULT = process.env.URL_DEFAULT
 
   return Object.assign({}, config, {
     fixturesFolder: 'tests/e2e/fixtures',
